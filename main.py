@@ -11,7 +11,7 @@ class MainHandler(webapp2.RequestHandler):
   </head>
   <body>
     <form method="post">
-      <input type="text" name="nome">
+      <input type="number" name="numero">
       <input type="submit">
     </form>
   </body>
@@ -20,9 +20,45 @@ class MainHandler(webapp2.RequestHandler):
     )
 
   def post(self):
-    nome = self.request.get("nome")
-    self.response.out.write("Oi " + nome)
+    numero = self.request.get("numero")
+    self.response.out.write(int(numero)**2)
+
+
+class LoginHandler(webapp2.RequestHandler):
+  def get(self):
+    self.response.out.write(
+      """
+<html>
+  <head>
+    <title>Awesome Blog!</title>
+  </head>
+  <body>
+    Essa é a página de login!
+  </body>
+</html>
+      """
+    )
 
 app = webapp2.WSGIApplication([
-  ('/', MainHandler)
+  ('/', MainHandler),
+  ('/login', LoginHandler)
 ])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
